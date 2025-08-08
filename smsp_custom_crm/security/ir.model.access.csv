@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_qualification_requirement_user,qualification.requirement user,model_qualification_requirement,base.group_user,1,1,1,1
+access_qualification_requirement_manager,qualification.requirement manager,model_qualification_requirement,sales_team.group_sale_manager,1,1,1,1
+access_crm_lead_requirement_line_user,crm.lead.requirement.line user,model_crm_lead_requirement_line,base.group_user,1,1,1,1
+access_crm_lead_requirement_line_manager,crm.lead.requirement.line manager,model_crm_lead_requirement_line,sales_team.group_sale_manager,1,1,1,1

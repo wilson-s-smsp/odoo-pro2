@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Sample Qualification Requirements -->
+        <record id="req_decision_maker" model="qualification.requirement">
+            <field name="name">Identified key decision maker(s)</field>
+            <field name="description">Contact and identify the person(s) who have authority to make purchasing decisions</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="req_budget_availability" model="qualification.requirement">
+            <field name="name">Initial assessment of budget availability</field>
+            <field name="description">Understand if the prospect has allocated budget for this type of solution</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="req_purchasing_volume" model="qualification.requirement">
+            <field name="name">Basic understanding of potential purchasing volume/frequency</field>
+            <field name="description">Estimate the volume and frequency of potential purchases</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <record id="req_project_timeline" model="qualification.requirement">
+            <field name="name">Anticipated general project timeline or purchasing cycle</field>
+            <field name="description">Understand the expected timeline for decision making and implementation</field>
+            <field name="sequence">40</field>
+        </record>
+        
+        <record id="req_confirmed_prospect" model="qualification.requirement">
+            <field name="name">Confirmed prospect has a potential need for client products</field>
+            <field name="description">Verify that the prospect has a genuine need for our products or services</field>
+            <field name="sequence">50</field>
+        </record>
+        
+        <record id="req_key_decision_maker" model="qualification.requirement">
+            <field name="name">Identified key decision maker(s) or influencers</field>
+            <field name="description">Map out the decision making process and key stakeholders</field>
+            <field name="sequence">60</field>
+        </record>
+        
+        <record id="req_established_timeline" model="qualification.requirement">
+            <field name="name">Established company can meet based requirements</field>
+            <field name="description">Confirm our company can meet the client's basic requirements</field>
+            <field name="sequence">70</field>
+        </record>
+        
+        <record id="req_preliminary_quotation" model="qualification.requirement">
+            <field name="name">Prepared preliminary quotation</field>
+            <field name="description">Initial pricing and proposal has been prepared and shared</field>
+            <field name="sequence">80</field>
+        </record>
+        
+        <record id="req_proposal_delivery" model="qualification.requirement">
+            <field name="name">Proposal delivery willingness for prospect feedback</field>
+            <field name="description">Prospect is willing to review detailed proposal and provide feedback</field>
+            <field name="sequence">90</field>
+        </record>
+        
+    </data>
+</odoo> 

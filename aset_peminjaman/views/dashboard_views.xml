@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Dashboard Client Action -->
+        <record id="action_asset_dashboard" model="ir.actions.client">
+            <field name="name">Dashboard Aset</field>
+            <field name="tag">asset_dashboard</field>
+        </record>
+
+        <!-- Dashboard Menu Item -->
+        <record id="menu_asset_dashboard_main" model="ir.ui.menu">
+            <field name="name">Dashboard</field>
+            <field name="parent_id" ref="menu_asset_management_root"/>
+            <field name="action" ref="action_asset_dashboard"/>
+            <field name="sequence">1</field>
+        </record>
+    </data>
+</odoo> 

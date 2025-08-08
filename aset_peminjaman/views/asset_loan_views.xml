@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_loan_form" model="ir.ui.view">
+            <field name="name">asset.loan.form</field>
+            <field name="model">asset.loan</field>
+            <field name="arch" type="xml">
+                <form string="Peminjaman Aset">
+                    <header>
+                        <button name="action_borrow" type="object" string="Pinjam Aset"
+                                invisible="state != 'draft'"
+                                class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Kembalikan Aset"
+                                invisible="state != 'borrowed'"
+                                class="oe_highlight"/>
+                        <button name="action_reset_to_draft" type="object" string="Reset ke Draft"
+                                invisible="state not in ('borrowed', 'returned')"
+                                confirm="Anda yakin ingin mereset peminjaman ini ke Draft?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,borrowed,returned"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="asset_id" domain="[('is_available', '=', True)]"/>
+                                <field name="borrower_name"/>
+                            </group>
+                            <group>
+                                <field name="borrow_date"/>
+                                <field name="return_date"/>
+                                <field name="actual_return_date" invisible="state != 'returned'"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Deskripsi">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_asset_loan_tree" model="ir.ui.view">
+            <field name="name">asset.loan.tree</field>
+            <field name="model">asset.loan</field>
+            <field name="arch" type="xml">
+                <tree string="Daftar Peminjaman" decoration-success="state == 'returned'" decoration-warning="state == 'borrowed'">
+                    <field name="name"/>
+                    <field name="asset_id"/>
+                    <field name="borrower_name"/>
+                    <field name="borrow_date"/>
+                    <field name="return_date"/>
+                    <field name="actual_return_date"/>
+                    <field name="state" widget="badge" decoration-success="state == 'returned'" decoration-warning="state == 'borrowed'" decoration-info="state == 'draft'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_asset_loan_search" model="ir.ui.view">
+            <field name="name">asset.loan.search</field>
+            <field name="model">asset.loan</field>
+            <field name="arch" type="xml">
+                <search string="Cari Peminjaman">
+                    <field name="name"/>
+                    <field name="asset_id"/>
+                    <field name="borrower_name"/>
+                    <filter string="Dipinjam" name="borrowed" domain="[('state', '=', 'borrowed')]"/>
+                    <filter string="Dikembalikan" name="returned" domain="[('state', '=', 'returned')]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_asset" string="Aset" context="{'group_by': 'asset_id'}"/>
+                        <filter name="group_by_borrower" string="Peminjam" context="{'group_by': 'borrower_name'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_asset_loan" model="ir.actions.act_window">
+            <field name="name">Peminjaman Aset</field>
+            <field name="res_model">asset.loan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Buat Record Peminjaman Aset Baru
+                </p><p>
+                    Catat semua peminjaman aset kantor.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

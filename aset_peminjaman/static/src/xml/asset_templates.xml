@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <!-- Dashboard Template -->
+    <t t-name="aset_peminjaman.AssetDashboard" owl="1">
+        <div class="o_action_manager">
+            <div class="o_control_panel d-flex justify-content-between align-items-center p-3">
+                <h2>Dashboard Aset</h2>
+                <button class="btn btn-primary" t-on-click="onRefresh">
+                    <i class="fa fa-refresh"/> Refresh
+                </button>
+            </div>
+            
+            <div class="o_content p-3">
+                <div class="container-fluid">
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body text-center">
+                                    <h3 t-esc="state.totalAssets"/>
+                                    <p>Total Aset</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body text-center">
+                                    <h3 t-esc="state.availableAssets"/>
+                                    <p>Tersedia</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body text-center">
+                                    <h3 t-esc="state.borrowedAssets"/>
+                                    <p>Dipinjam</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body text-center">
+                                    <h3 t-esc="state.overdueLoans"/>
+                                    <p>Terlambat</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Simple Info -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Informasi Sistem</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Dashboard Aset Peminjaman telah berhasil dimuat.</p>
+                                    <p>Gunakan menu Aset Kantor untuk mengelola aset dan Peminjaman Aset untuk mencatat peminjaman.</p>
+                                    <hr/>
+                                    <h6>Status Data:</h6>
+                                    <ul>
+                                        <li>Total Aset: <span t-esc="state.totalAssets"/></li>
+                                        <li>Aset Tersedia: <span t-esc="state.availableAssets"/></li>
+                                        <li>Aset Dipinjam: <span t-esc="state.borrowedAssets"/></li>
+                                        <li>Total Peminjaman: <span t-esc="state.totalLoans"/></li>
+                                    </ul>
+                                    
+                                    <div t-if="state.loading" class="text-center mt-3">
+                                        <i class="fa fa-spinner fa-spin"/>
+                                        <span class="ms-2">Loading data...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates> 

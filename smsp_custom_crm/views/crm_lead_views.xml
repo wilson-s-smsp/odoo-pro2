@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Custom Opportunity Form View -->
+    <record id="crm_lead_view_form_custom" model="ir.ui.view">
+        <field name="name">crm.lead.form.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="arch" type="xml">
+            <form string="Opportunity" class="o_opportunity_form">
+                <header>
+                    <button name="action_set_won" string="Mark as Won" type="object" 
+                            class="oe_highlight" attrs="{'invisible': [('active', '=', False)]}"/>
+                    <button name="action_set_lost" string="Mark as Lost" type="object" 
+                            attrs="{'invisible': [('active', '=', False)]}"/>
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                
+                <!-- Custom OWL Component -->
+                <div class="o_form_sheet">
+                    <div class="custom_opportunity_container">
+                        <widget name="custom_opportunity_widget"/>
+                    </div>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Custom Widget Registration -->
+    <record id="crm_lead_action_custom" model="ir.actions.act_window">
+        <field name="name">Opportunities</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('type', '=', 'opportunity')]</field>
+        <field name="context">{
+            'default_type': 'opportunity',
+            'default_user_id': uid,
+        }</field>
+        <field name="view_id" ref="crm.crm_lead_view_kanban"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new opportunity
+            </p>
+        </field>
+    </record>
+
+    <!-- Override the default opportunity form view -->
+    <record id="crm.crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Opportunity" class="o_opportunity_form" js_class="custom_opportunity_form">
+                    <header>
+                        <button name="action_set_won" string="Mark as Won" type="object" 
+                                class="oe_highlight" attrs="{'invisible': [('active', '=', False)]}"/>
+                        <button name="action_set_lost" string="Mark as Lost" type="object" 
+                                attrs="{'invisible': [('active', '=', False)]}"/>
+                        <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    
+                    <div class="o_form_sheet">
+                        <div class="custom_opportunity_container" t-att-data-res-id="record.id">
+                            <!-- This will be replaced by OWL component -->
+                        </div>
+                    </div>
+                </form>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

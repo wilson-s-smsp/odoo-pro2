@@ -1,0 +1,537 @@
+/* Custom Opportunity View Styles */
+.custom-opportunity-view {
+    width: 100%;
+    max-width: none;
+    background: #f8f9fa;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Section */
+.opportunity-header {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.opportunity-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 8px 0;
+}
+
+.opportunity-meta {
+    display: flex;
+    gap: 24px;
+}
+
+.meta-item {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.meta-item i {
+    margin-right: 6px;
+    color: #007bff;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.header-actions .btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+/* Pipeline Progress */
+.pipeline-progress {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pipeline-progress h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.progress-container {
+    position: relative;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745 0%, #20c997 50%, #007bff 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-stages {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.stage-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e9ecef;
+    border: 3px solid #e9ecef;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.stage-circle.active {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.stage span {
+    font-size: 12px;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Section Styles */
+.qualification-section,
+.next-actions-section,
+.content-tabs,
+.customer-info-section,
+.related-opportunities-section,
+.opportunity-details-section,
+.product-interest-section {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.qualification-section h3,
+.next-actions-section h3,
+.customer-info-section h3,
+.related-opportunities-section h3,
+.opportunity-details-section h3,
+.product-interest-section h3 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Qualification Requirements */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.completion-badge {
+    background: #28a745;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.requirements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.requirement-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.requirement-item:last-child {
+    border-bottom: none;
+}
+
+.requirement-checkbox {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.requirement-checkbox input[type="checkbox"] {
+    margin-right: 12px;
+    transform: scale(1.2);
+}
+
+.requirement-checkbox label {
+    font-size: 14px;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
+.add-details {
+    color: #007bff;
+    background: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.add-details:hover {
+    text-decoration: underline;
+}
+
+/* Next Actions */
+.actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.action-icon {
+    width: 32px;
+    height: 32px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.action-content {
+    flex: 1;
+}
+
+.action-title {
+    display: block;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 2px;
+}
+
+.action-date {
+    display: block;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Content Tabs */
+.tab-headers {
+    display: flex;
+    border-bottom: 2px solid #f1f3f4;
+    margin-bottom: 20px;
+}
+
+.tab-header {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab-header.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
+.tab-header:hover {
+    color: #007bff;
+}
+
+.tab-pane {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.tab-pane ul {
+    margin-top: 12px;
+    padding-left: 20px;
+}
+
+.tab-pane li {
+    margin-bottom: 6px;
+}
+
+/* Customer Information */
+.customer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.customer-header h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.customer-type {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.contact-item strong {
+    color: #2c3e50;
+    margin-right: 8px;
+}
+
+.key-contacts h5 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.contact-person {
+    font-size: 14px;
+}
+
+.contact-person strong {
+    color: #2c3e50;
+}
+
+.contact-person span {
+    color: #6c757d;
+}
+
+/* Related Opportunities */
+.opportunities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.opportunity-item {
+    padding: 12px;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+}
+
+.opp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.opp-name {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.opp-status.won {
+    background: #d4edda;
+    color: #155724;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.opp-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Opportunity Details */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item label {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.detail-item span {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Product Interest */
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.product-name {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.product-quantity {
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Empty States */
+.empty-requirements,
+.empty-opportunities {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Loading State */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: #6c757d;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .right-column {
+        order: -1;
+    }
+} 

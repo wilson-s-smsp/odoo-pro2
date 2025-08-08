@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    
+    <t t-name="smsp_custom_crm.CustomOpportunityTemplate" owl="1">
+        <div class="custom-opportunity-view" t-if="!state.loading">
+            
+            <!-- Header Section -->
+            <div class="opportunity-header">
+                <div class="header-content">
+                    <div class="title-section">
+                        <h1 class="opportunity-title" t-esc="state.opportunity?.name or 'Untitled Opportunity'"/>
+                        <div class="opportunity-meta">
+                            <span class="meta-item" t-if="state.opportunity?.partner_id">
+                                <i class="fa fa-building-o"/> <t t-esc="state.opportunity.partner_id[1]"/>
+                            </span>
+                            <span class="meta-item" t-if="state.opportunity?.expected_revenue">
+                                <i class="fa fa-money"/> <t t-esc="formatCurrency(state.opportunity.expected_revenue)"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" t-on-click="onLogActivity">
+                            <i class="fa fa-plus"/> Log Activity
+                        </button>
+                        <button class="btn btn-secondary" t-on-click="onScheduleActivity">
+                            <i class="fa fa-calendar"/> Schedule Activity
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales Pipeline Progress -->
+            <div class="pipeline-progress">
+                <h3>Sales Pipeline Progress</h3>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" t-attf-style="width: #{state.opportunity?.progress_percentage or 0}%"/>
+                    </div>
+                    <div class="progress-stages">
+                        <div class="stage qualification">
+                            <div class="stage-circle active"/>
+                            <span>Qualification</span>
+                        </div>
+                        <div class="stage needs-analysis">
+                            <div class="stage-circle"/>
+                            <span>Needs Analysis</span>
+                        </div>
+                        <div class="stage proposal">
+                            <div class="stage-circle"/>
+                            <span>Proposal</span>
+                        </div>
+                        <div class="stage negotiation">
+                            <div class="stage-circle"/>
+                            <span>Negotiation</span>
+                        </div>
+                        <div class="stage won">
+                            <div class="stage-circle"/>
+                            <span>Won</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                
+                <!-- Left Column -->
+                <div class="left-column">
+                    
+                    <!-- Qualification Requirements -->
+                    <div class="qualification-section">
+                        <div class="section-header">
+                            <h3>Qualification Requirements</h3>
+                            <span class="completion-badge" t-esc="getQualificationProgress() + '% complete'"/>
+                        </div>
+                        
+                        <div class="requirements-list" t-if="state.opportunity?.requirement_lines">
+                            <div class="requirement-item" t-foreach="state.opportunity.requirement_lines" t-as="requirement" t-key="requirement.id">
+                                <div class="requirement-checkbox">
+                                    <input type="checkbox" 
+                                           t-att-id="'req_' + requirement.id"
+                                           t-att-checked="requirement.is_completed"
+                                           t-on-change="() => this.toggleRequirement(requirement.id)"/>
+                                    <label t-att-for="'req_' + requirement.id" t-esc="requirement.requirement_name"/>
+                                </div>
+                                <button class="btn btn-sm btn-link add-details">Add Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="empty-requirements" t-if="!state.opportunity?.requirement_lines?.length">
+                            <p>No qualification requirements found.</p>
+                        </div>
+                    </div>
+
+                    <!-- Next Actions -->
+                    <div class="next-actions-section">
+                        <h3>Next Actions</h3>
+                        <div class="actions-list">
+                            <div class="action-item">
+                                <i class="fa fa-phone action-icon"/>
+                                <div class="action-content">
+                                    <span class="action-title">Follow-up Call</span>
+                                    <span class="action-date">Expected by Jan 30, 2025</span>
+                                </div>
+                            </div>
+                            <div class="action-item">
+                                <i class="fa fa-envelope action-icon"/>
+                                <div class="action-content">
+                                    <span class="action-title">Prepare preliminary quotation</span>
+                                    <span class="action-date">by quotation team</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Tabs -->
+                    <div class="content-tabs">
+                        <div class="tab-headers">
+                            <button class="tab-header" 
+                                    t-att-class="state.activeTab === 'activities' ? 'active' : ''"
+                                    t-on-click="() => this.setActiveTab('activities')">
+                                Activities
+                            </button>
+                            <button class="tab-header" 
+                                    t-att-class="state.activeTab === 'documents' ? 'active' : ''"
+                                    t-on-click="() => this.setActiveTab('documents')">
+                                Documents
+                            </button>
+                            <button class="tab-header" 
+                                    t-att-class="state.activeTab === 'notes' ? 'active' : ''"
+                                    t-on-click="() => this.setActiveTab('notes')">
+                                Notes
+                            </button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div t-if="state.activeTab === 'activities'" class="tab-pane">
+                                <p>Activities content will be displayed here. This section will contain:</p>
+                                <ul>
+                                    <li>Past activities and communications</li>
+                                    <li>Scheduled meetings and calls</li>
+                                    <li>Activity timeline</li>
+                                </ul>
+                            </div>
+                            
+                            <div t-if="state.activeTab === 'documents'" class="tab-pane">
+                                <p>Documents content will be displayed here. This section will contain:</p>
+                                <ul>
+                                    <li>Proposals and quotations</li>
+                                    <li>Contracts and agreements</li>
+                                    <li>Supporting documents</li>
+                                </ul>
+                            </div>
+                            
+                            <div t-if="state.activeTab === 'notes'" class="tab-pane">
+                                <p>Notes content will be displayed here. This section will contain:</p>
+                                <ul>
+                                    <li>Meeting notes</li>
+                                    <li>Important observations</li>
+                                    <li>Client preferences and requirements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    
+                    <!-- Customer Information -->
+                    <div class="customer-info-section">
+                        <h3>Customer Information</h3>
+                        <div class="customer-details" t-if="state.opportunity?.partner_id">
+                            <div class="customer-header">
+                                <h4 t-esc="state.opportunity.partner_id[1]"/>
+                                <span class="customer-type">Manufacturing</span>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-item" t-if="state.opportunity.phone">
+                                    <strong>Phone:</strong> <t t-esc="state.opportunity.phone"/>
+                                </div>
+                                <div class="contact-item" t-if="state.opportunity.email">
+                                    <strong>Email:</strong> <t t-esc="state.opportunity.email"/>
+                                </div>
+                                <div class="contact-item" t-if="state.opportunity.street">
+                                    <strong>Address:</strong> 
+                                    <t t-esc="state.opportunity.street"/>
+                                    <t t-if="state.opportunity.city">, <t t-esc="state.opportunity.city"/></t>
+                                </div>
+                            </div>
+                            
+                            <div class="key-contacts">
+                                <h5>Key Contacts</h5>
+                                <div class="contact-person" t-if="state.opportunity.user_id">
+                                    <strong t-esc="state.opportunity.user_id[1]"/>
+                                    <br/>
+                                    <span>Sales Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Opportunities -->
+                    <div class="related-opportunities-section">
+                        <h3>Related Opportunities</h3>
+                        <div class="opportunities-list" t-if="state.relatedOpportunities?.length">
+                            <div class="opportunity-item" t-foreach="state.relatedOpportunities" t-as="opp" t-key="opp.id">
+                                <div class="opp-header">
+                                    <span class="opp-name" t-esc="opp.name"/>
+                                    <span class="opp-status won" t-if="opp.stage_id">Won</span>
+                                </div>
+                                <div class="opp-details">
+                                    <span t-esc="formatCurrency(opp.expected_revenue)"/>
+                                    <span class="opp-date">Closed on March 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="empty-opportunities" t-if="!state.relatedOpportunities?.length">
+                            <p>No related opportunities found.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opportunity Details -->
+                    <div class="opportunity-details-section">
+                        <h3>Opportunity Details</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Customer:</label>
+                                <span t-esc="state.opportunity?.partner_id?.[1] or '-'"/>
+                            </div>
+                            <div class="detail-item">
+                                <label>Contact:</label>
+                                <span t-esc="state.opportunity?.user_id?.[1] or '-'"/>
+                            </div>
+                            <div class="detail-item">
+                                <label>Amount:</label>
+                                <span t-esc="formatCurrency(state.opportunity?.expected_revenue)"/>
+                            </div>
+                            <div class="detail-item">
+                                <label>Probability:</label>
+                                <span t-esc="(state.opportunity?.probability || 0) + '%'"/>
+                            </div>
+                            <div class="detail-item">
+                                <label>Expected Closing:</label>
+                                <span t-esc="formatDate(state.opportunity?.date_deadline)"/>
+                            </div>
+                            <div class="detail-item">
+                                <label>Tags:</label>
+                                <span>Steel, HRC, Factory</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Interest -->
+                    <div class="product-interest-section">
+                        <h3>Product Interest</h3>
+                        <div class="products-list">
+                            <div class="product-item">
+                                <span class="product-name">Hot Rolled Coil (HRC) - Grade SS400</span>
+                                <span class="product-quantity">~500 MT</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="product-name">Cold Rolled Coil (CRC) - SPCC</span>
+                                <span class="product-quantity">~200 MT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading State -->
+        <div t-if="state.loading" class="loading-state">
+            <div class="spinner"/>
+            <p>Loading opportunity data...</p>
+        </div>
+    </t>
+    
+</templates>

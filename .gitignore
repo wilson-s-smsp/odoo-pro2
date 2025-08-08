@@ -1,0 +1,8 @@
+.flake8
+run_without_test.sh
+venv/
+.cache
+__pycache__/
+*.pyc
+*.pyd
+*.pyo

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_asset_management_root"
+                  name="Manajemen Aset"
+                  sequence="10"/> 
+
+
+
+        <menuitem id="menu_asset_items"
+                  name="Aset Kantor"
+                  parent="menu_asset_management_root"
+                  action="action_asset_item"
+                  sequence="10"/>
+
+        <menuitem id="menu_asset_loans"
+                  name="Peminjaman Aset"
+                  parent="menu_asset_management_root"
+                  action="action_asset_loan"
+                  sequence="20"/>
+
+        <record id="seq_asset_loan" model="ir.sequence">
+            <field name="name">Asset Loan Sequence</field>
+            <field name="code">asset.loan</field>
+            <field name="prefix">LOAN/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
