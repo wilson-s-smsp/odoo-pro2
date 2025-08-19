@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<t t-name="crm_empty.MyLeadComponent" owl="1">
+    <div class="my-lead-layout">
+        <h1>Hello World</h1>
+        <h1><t t-esc="state.name"/></h1>
+        <p><t t-esc="state.email"/></p>
+    </div>
+</t>

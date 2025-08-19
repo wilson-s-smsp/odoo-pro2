@@ -28,8 +28,8 @@
         'security/ir.model.access.csv', # Hak akses untuk model kita
         'views/asset_item_views.xml',    # Tampilan untuk model asset.item
         'views/asset_loan_views.xml',    # Tampilan untuk model asset.loan
-        'views/dashboard_views.xml',     # Dashboard views (harus sebelum menu)
-        'views/menu_items.xml',          # Item menu navigasi
+        'views/menu_items.xml',          # Item menu navigasi (root menu dulu)
+        'views/dashboard_views.xml',     # Dashboard views (setelah root menu tersedia)
     ],
     'assets': {
         'web.assets_backend': [
